@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharepost</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+    <div class="w-full min-h-screen bg-[#101357]  border p-5">
+        <div class="flex justify-between">
+            <h1 class="text-white text-3xl font-bold">Sharepost 📸 </h1>
+            <a class="bg-red-500 text-white rounded-md px-3 py-2 text-sm mb-5 inline-block" href="/logout">Logout</a>
+        </div>
+           
+         <div class="flex mt-5 gap-8">
+            <h3 class="text-3xl  text-white"><span class="font-light">Hello</span>     <%= user.username %></h3>
+         </div>
+         <h5 class="mt-5 mb-5 text-2xl text-white">you can Create a post</h5>
+            <form action="/post" method="post" >
+                <textarea name="content" required placeholder="what's on your mind" class="p-3 text-white outline-none w-1/3 resize-none bg-transparent border-2 border-white rounded-md"></textarea>
+                <input type="submit" class="px-3 w-40 py-2 bg-blue-500 text-white block rounded-md mt-2" value="create new post">
+        
+            </form>
+            <div class="posts mt-20">
+                <h3 class="text-zinc-400">Your posts</h3>
+        <div class="postcontainer mt-5">
+            <% user.posts.reverse().forEach(function(post){ %>
+                <div class="post w-1/3 mb-4 p-4 border-[1px] border-zinc-800 ">
+                    <h4 class="text-blue-500 mb-2">@<%= user.username %></h4>
+                    <p class="text-sm text-white tracking-lighter"><%= post.content %></p>
+                    <small class="mt-2 flex text-white gap-4 mt-1 inline-block"><%= post.likes.length %> likes</small>
+                    <div class="btns flex gap-5 mt-1">
+                        <a class="text-blue-500" href="/like/<%= post._id %>">
+                            <%= post.likes.includes(user._id) ? 'unlike' : 'like' %>
+                        </a>
+                        <a class="text-zinc-600" href="/edit/<%= post._id %>">Edit</a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+            </div>
+
+    </div>        
+    
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharepost</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body>
+   <div class="w-full min-h-screen bg-[#101357] text-white p-10">
+       <div class="flex w-full justify-end">
+        <a class="bg-red-500 text-white rounded-md px-3 py-2 text-sm mb-5 inline-block" href="/logout">Logout</a>
+       </div>
+    <h5 class="mt-5 mb-5">Edit your post</h5>
+    <form action="/update/<%= post._id %>" method="post" >
+        <textarea name="content" placeholder="what's on your mind" class="p-3  outline-none w-1/3 resize-none bg-transparent border-2 border-zinc-800 rounded-md" style="text-align: left;">
+            <%= post.content %>
+        </textarea>
+        <input type="submit" class="px-3 w-40 py-2 bg-yellow-500 block rounded-md mt-2" value="update a post">
+
+    </form>
+    
+       
+   </div>
+
+</body>
+</html>
